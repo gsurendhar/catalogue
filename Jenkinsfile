@@ -38,6 +38,17 @@ pipeline{
                 }
             }
         }
+        stage('Docker Build'){
+            steps{
+                script{
+                    withAWS(credentials:'AWS-creds', region: 'us-east-1') {
+                        sh """
+                            echo "ECR BIULD command"
+                        """
+                    }
+                }
+            }
+        }
 
     }
 }
