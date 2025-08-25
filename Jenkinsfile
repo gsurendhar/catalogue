@@ -29,6 +29,15 @@ pipeline{
                 }
             }
         }
+        stage('Unit Testing'){
+            steps{
+                script{
+                    sh """
+                        echo "Unit Tests is going on when we provide test cases"
+                    """
+                }
+            }
+        }
 
     }
 }
