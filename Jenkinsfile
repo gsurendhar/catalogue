@@ -49,6 +49,25 @@ pipeline{
                 }
             }
         }
-
+        stage('Deploy'){
+            input{
+                message "should we countinue ?"
+                ok "yes,we Should"
+                submitter "Mr Jenkins"
+                parameters {
+                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+                }
+            }
+            steps{
+                script{
+                    withAWS(credentials:'AWS-creds', region: 'us-east-1') {
+                        sh """
+                            echo "Deploying"
+                            echo "hello, ${PERSON}, nice to meet you"
+                        """
+                    }
+                }
+            }
+        }
     }
 }
